@@ -1,0 +1,18 @@
+services:
+  yggdrasil:
+    build:
+      context: .
+      args:
+        - YGG_VER=0.5.4
+    volumes:
+      - ./conf:/etc/yggdrasil
+    ports:
+      - 1514:1514
+      - 1515:1515
+      - 1515:1515/udp
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    network_mode: host
+    restart: always
