@@ -5,6 +5,7 @@ This is yet another implementation of Yggdrasil in Docker
 1. Clone repo and generate default Yggdrasil configuration:
     ```sh
     git clone https://github.com/WGOS/yggdrasil-docker.git
+    cd yggdrasil-docker
     mkdir ./conf
     docker compose run yggdrasil yggdrasil -genconf > conf/yggdrasil.conf
     ```
