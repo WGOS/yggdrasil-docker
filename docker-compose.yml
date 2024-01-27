@@ -1,9 +1,6 @@
 services:
   yggdrasil:
-    build:
-      context: .
-      args:
-        - YGG_VER=0.5.4
+    image: ghcr.io/wgos/yggdrasil-docker:latest
     volumes:
       - ./conf:/etc/yggdrasil
     ports:

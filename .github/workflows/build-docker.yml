@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - { yggdrasil: '0.5.4' }
+          - { yggdrasil: '0.5.4', latest: true }
 
     steps:
       - name: Checkout
@@ -40,7 +40,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository }}:${{ matrix.yggdrasil }}
+          tags: |
+            ghcr.io/${{ github.repository }}:${{ matrix.yggdrasil }}
+            ${{ matrix.latest && format('ghcr.io/{0}:latest', github.repository) }}
           build-args: |
             YGG_VER=${{ matrix.yggdrasil }}
           platforms: |
