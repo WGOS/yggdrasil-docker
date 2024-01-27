@@ -19,11 +19,11 @@ jobs:
           - { yggdrasil: '0.5.4', latest: true }
 
     steps:
-      - name: set lower case owner name
+      - name: Lowercase repo name
         run: |
-          echo "OWNER_LC=${OWNER,,}" >>${GITHUB_ENV}
+          echo "REPO_NAME_LC=${REPO_NAME,,}" >>${GITHUB_ENV}
         env:
-          OWNER: '${{ github.repository_owner }}'
+          REPO_NAME: '${{ github.repository }}'
         
       - name: Checkout
         uses: actions/checkout@v3
@@ -47,8 +47,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:${{ matrix.yggdrasil }}
-            ${{ matrix.latest && format('ghcr.io/{0}:latest', github.repository) }}
+            ghcr.io/${{ env.REPO_NAME_LC }}:${{ matrix.yggdrasil }}
+            ${{ matrix.latest && format('ghcr.io/{0}:latest', env.REPO_NAME_LC) }}
           build-args: |
             YGG_VER=${{ matrix.yggdrasil }}
           platforms: |
