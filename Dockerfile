@@ -1,4 +1,4 @@
-FROM golang:alpine3.19 as build
+FROM golang:alpine3.21 as build
 
 ARG YGG_VER
 WORKDIR /build
@@ -8,7 +8,7 @@ RUN git clone https://github.com/yggdrasil-network/yggdrasil-go . \
     && git checkout tags/v$YGG_VER \
     && ./build
 
-FROM alpine:3.19
+FROM alpine:3.21
 
 ENV PATH="$PATH:/opt/yggdrasil"
 WORKDIR /opt/yggdrasil
