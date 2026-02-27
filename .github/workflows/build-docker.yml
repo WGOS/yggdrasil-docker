@@ -16,7 +16,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - { yggdrasil: '0.5.12', latest: true }
+          - { yggdrasil: '0.5.13', latest: true }
+          - { yggdrasil: '0.5.12' }
 
     steps:
       - name: Lowercase repo name
